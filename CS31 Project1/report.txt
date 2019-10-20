@@ -1,0 +1,8 @@
+Nicholas Mark
+305101337
+
+In step 5, I inputed the -3, 97, and -10 which resulted in negative percents and percents greater than 100.
+
+In logic_error.cpp, I multiplied the variable, independentSeats, by 1000 instead of 100.0. This resulted in independents controlling over 100% of Congress.
+
+In compile_error.cpp, I left out one of the “<’’ after “cout” and capitalized “Int”.

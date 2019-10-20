@@ -1,0 +1,78 @@
+Nicholas Mark
+305101337
+
+1) 
+endlendl
+endline
+
+2)
+The programs takes in a number len, then prints out a large front slash using spaces, new lines, and len number of “#” symbols. 
+
+3)
+#include <iostream>
+	using namespace std;
+
+	int main()
+	{
+	    int len;
+
+	    cout << "Enter a number: ";
+	    cin >> len;
+
+	    for (int i = 0; i < len; i++)
+	    {
+			int j = i+1;
+		    while (j < len)
+		    {
+		        cout << " “;
+				j++;
+		    }
+		    cout << "#" << endl;
+	    }
+	}
+
+
+4)
+#include <iostream>
+	using namespace std;
+
+	int main()
+	{
+	    int len;
+
+	    cout << "Enter a number: ";
+	    cin >> len;
+
+		int i=0;
+		if(len > 0)
+		{
+		    do
+		    {
+				int j = i+1;
+			    while (j < len)
+			    {
+			        cout << “ “;
+					j++;
+			    }
+			    cout << "#" << endl;
+				i++;
+		    }
+			while (i<len);
+		}
+	}
+5)
+switch (weekday) {
+        case 1:
+            cout << "rainy days and mondays get me down";
+            break;
+        case 2:
+            cout << "ruby tuesday";
+            break;
+        case 6:
+            cout << "wonderful weekend";
+        case 7:
+            cout << "wonderful weekend";
+        default:
+            cout << "regular day";
+            break;
+}

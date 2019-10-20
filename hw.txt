@@ -1,0 +1,238 @@
+Nicholas Mark
+305101337
+
+1.
+a.
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int arr[4] = { 0, 1, 2, 3 };
+	int* ptr = arr;
+	*ptr = arr[1];               // set arr[0] to 1
+	*(ptr + 1) = arr[1] * 10;    // set arr[1] to 10
+	ptr += 2;
+	ptr[0] = arr[1] * 10;        // set arr[2] to 100
+	ptr[1] = 1000;                 // set arr[3] to 1000
+	ptr += 2; 			// MUST SET ptr TO POINT TO arr[3]
+	while (ptr > arr)	// MUST EXLUDE 0 
+	{
+		ptr--;
+		cout << " " << *ptr;    // print values
+	}
+	cout << endl;
+	return(0);
+}
+
+b. The pointer is reassigned to arr + k, but the updated value for the pointer is not passed back to the driver code. By adding &p instead of just p in the parameters, we solve this problem
+#include <iostream>
+using namespace std;
+
+void findLastZero(int arr[], int n, int* &p)
+{
+	p = nullptr;    /// default value if there isn't a 0 in the array at all
+	for (int k = n - 1; k >= 0; k--)
+	{
+		if (arr[k] == 0)      // found an element whose value is 0
+		{
+			p = arr + k;     // change the value of p
+			break;           // stop looping and return
+		}
+	}
+}
+
+int main()
+{
+	int nums[6] = { 10, 20, 0, 40, 30, 50 };
+	int* ptr;
+
+
+	findLastZero(nums, 6, ptr);
+	if (ptr == nullptr)
+	{
+		cout << "The array doesn't have any zeros inside it." << endl;
+	}
+	else
+	{
+		cout << "The last zero is at address " << ptr << endl;
+		cout << "It's at index " << ptr - nums << endl;
+		cout << "The item's value is " << *ptr << " which is zero!" << endl;
+	}
+	return(0);
+}
+
+c. Memory must be allocated to the value of the pointer if it will store an int. So we must initialize a new int and delete it to conserve space.
+
+void biggest(int value1, int value2, int * resultPtr)
+{
+	if (value1 > value2)
+	{
+		*resultPtr = value1;
+	}
+	else
+	{
+		*resultPtr = value2;
+	}
+}
+
+int main()
+{
+	int* p = new int;
+	biggest(15, 20, p);
+	cout << "The biggest value is " << *p << endl;
+	delete p;
+	return(0);
+}
+
+d.  Asterisks must be added so the refers to the value of the address, rather than the address itself.
+
+// return true if two C strings are equal 
+bool match(const char str1[], const char str2[])
+{
+	bool result = true;
+	while (*str1 != 0 && *str2 != 0)  // zero bytes at ends 
+	{
+		if (*str1 != *str2)  // compare corresponding characters
+		{
+			result = false;
+			break;
+		}
+		str1++;            // advance to the next character
+		str2++;
+	}
+	if (result)
+	{
+		result = (*str1 == *str2);    // both ended at same time?
+	}
+	return(result);
+}
+    int main()
+    {
+        char a[10] = "pointy";
+        char b[10] = "pointless"; 
+        if (match(a,b))
+        {
+            cout << "They're the same!" << endl;
+        }
+    }
+
+e. Return values do not have a set address since their values are deleted if there is no new. So in this code, ptr points to some deleted address, causing the error.
+
+	#include <iostream>
+    using namespace std;
+
+    int fibonacci( int n ) 
+    { 
+        int tmp;
+        int a = 1;
+        int b = 1;        
+
+        for (int i = 0; i < n-2; i ++)  
+        {
+             tmp = a+b;
+            a = b;
+             b = tmp;
+        } 
+        return b;
+   }
+
+   int* computeFibonacciSequence(int& n)
+   {
+        int arr[8]; 
+        n = 8;
+        for (int k = 0; k < n; k++)
+        {
+            arr[k] = fibonacci( k+1 ); 
+        } 
+        return arr;
+    }
+
+    int main()
+    {
+        int m;
+        int* ptr = computeFibonacciSequence(m); 
+        for (int i = 0; i < m; i++)
+        {
+            cout << ptr[i] << ' ';
+        }
+        return( 0 );
+    }
+
+2.
+	1. f
+	2. g
+	3. a
+	4. b
+	5. d
+	6. c
+	7. b
+	8. e
+	9. h
+
+3. This code will print the modifed array in each of its own rows. See explanations in the main code.
+#include <iostream>
+using namespace std; 
+
+    int* minimart(int* a, int* b)
+    {
+        if (*a < *b)
+            return a;
+        else 
+            return b;
+    }
+
+
+void swap1(int* a, int *b)
+{
+	int* temp = a;
+	a = b;
+	b = temp;
+}
+
+void swap2(int* a, int *b)
+{
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+int main()
+{
+	int array[6] = { 5, 3, 4, 17, 22, 19 };
+
+	int* ptr = minimart(array, &array[2]); 
+	// ptr points to either array[0] or array[2] based on the smaller value. It is array[2] in this case.
+	ptr[1] = 9; //sets array[3] equal to 9
+	ptr += 2; //ptr points to address of array[4]
+	*ptr = -1; //sets array[4] to -1. So now array == {5, 3, 4, 9, -1, 19}
+	*(array + 1) = 79; //sets array[1]  to 79, So array== {5, 79, 4, 9, -1, 19}
+
+	cout << "diff=" << &array[5] - ptr << endl; //subtracts address of element 4 from address of element 5 to be 1
+
+	swap1(&array[0], &array[1]); //swaps the address of array[0] and array[1]
+	swap2(array, &array[2]); //array[0] value swaps with array[2] value so array== {4, 79, 5, 9, -1, 19}
+
+	for (int i = 0; i < 6; i++)
+		cout << array[i] << endl; 
+
+	return(0);
+}
+
+
+
+
+
+
+4.
+void deleteDigits(char* myCstring)
+{
+	char* ptr = myCstring;
+
+	while (*ptr != 0)
+	{
+		if (isdigit(*ptr))
+			*ptr = ' ';
+		ptr++;
+	}
+}

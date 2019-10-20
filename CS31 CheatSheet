@@ -1,0 +1,56 @@
+//Data Structures:
+struct product {int weight; double price;};
+product apple;
+product banana; melon;
+apple.weight = 2; apple.price = 1.50;
+
+//Pointers to Structures
+struct movies_t {string title;int year;};
+movies_t amovie;
+movies_t * pmovie;
+pmovie = & amovie;
+pmovie->title = "Frozen";
+//Expression	What is evaluated			Equivalent
+a.b				Member b of object a	
+a->b		Member b of object pointed to by a	(*a).b
+*a.b	Value pointed to by member b of object a	*(a.b)
+
+// "::" vs "." vs "->"
+"->" is used when the pointer is pointing to a member of an object. it is equivalent to doing (*pointerVariable).member
+"." is used more generally, beyond just pointer variables. It is used such that the object is refering to a member of that object
+In Candy, the pointer was pointing to the members of the structure, so I could use the "->" syntax. But when the object c is refering it's members, it must use "." since it is not a pointer variable type.
+"::" is used when an object is referring to a member of the class, as opposed to an object.
+
+a::b is only used if b is a member of the class (or namespace) a. That is, in this case a will always be the name of a class (or namespace).
+a.b is only used if b is a member of the object (or reference to an object) a. So for a.b, a will always be an actual object (or a reference to an object) of a class.
+a->b is, originally, a shorthand notation for (*a).b. However, -> is the only of the member access operators that can be overloaded, so if a is an object of a class that overloads operator-> (common such types are smart pointers and iterators), then the meaning is whatever the class designer implemented. To conclude: With a->b, if a is a pointer, b will be a member of the object the pointer a refers to. If, however, a is an object of a class that overloads this operator, then the overloaded operator function operator->() gets invoked.
+
+//Automatic vs Dynamic Variables
+Automatic variables are local variables often declared in functions. They lifespan starts and finishes when the function is called. Memory is allocated only when its function is called, then is deleted once its function is finished.
+Dynamic variables include pointers. They are created when we initialize them with "new", and can have their memory allocation changed throughout the program. Memory can be freed by using "delete" on the pointer variable.
+
+
+//Virtual Functions
+//functions in the base class that you can override in derived classes
+//in Animal class
+    virtual void eat() { std::cout << "I'm eating generic food."; }
+
+class Cat : public Animal {
+    public:
+        void eat() { std::cout << "I'm eating a rat."; }
+};
+//In The Main Function
+void func(Animal *xyz) { xyz->eat(); }
+Animal *animal = new Animal;
+Cat *cat = new Cat;
+
+cout<<animal->eat(); // Outputs: "I'm eating generic food."
+cout<<cat->eat();    // Outputs: "I'm eating a rat."
+cout<<func(animal); // Outputs: "I'm eating generic food."
+cout<<func(cat);    // Outputs: "I'm eating a rat." //not I'm eating generic food
+
+
+//Pointers
+//initializing:
+char *input = new char[100]; //or
+char *input = new char;

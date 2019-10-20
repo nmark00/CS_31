@@ -1,0 +1,83 @@
+Nicholas Mark
+305101337
+
+A.
+I had trouble getting started because I did not understand the syntax for linking classes together. I was confused with the syntax of the header and how that works with the .cpp file. Once I understood that, I encountered a linker error, but eventually figured out that I did not specify the location of the BoxOffice functions.
+
+B.
+Ticket t( "Pavillion Row 13", 45, "Dodgers vs. Brewers", "Dodger Stadium", 150.00, Ticket::KIND::ATHLETICGAME, "August 1, 7:30PM" );
+    BoxOffice b;
+    assert( std::to_string( t.getPrice() ) == "150.000000" );
+    assert( t.getKind() == Ticket::KIND::ATHLETICGAME );
+    assert( t.getRow() == "Pavillion Row 13" );
+    assert( t.getSeat() == 45 );
+    assert( t.getVenue() ==  "Dodger Stadium" );
+    assert( t.getEvent() == "Dodgers vs. Brewers" );
+    assert( t.getDayTime() == "August 1, 7:30PM" );
+
+ //I used this to test non Royce Hall tickets. It tests to make sure all the ticket items returned what they were supposed to.
+
+
+    
+     t = b.buyRoyceHallStudentTicket( "Orchestra Row U", 20, "Episode VII: The Force Awakens", Ticket::KIND::MOVIE, "September 1, 7:30PM" );
+    assert( std::to_string( t.getPrice() ) == "20.000000" );
+    assert( t.getKind() == Ticket::KIND::MOVIE );
+    assert( t.getRow() == "Orchestra Row U" );
+    assert( t.getSeat() == 20 );
+    assert( t.getVenue() ==  "Royce Hall" );
+    assert( t.getEvent() == "Episode VII: The Force Awakens" );
+    assert( t.getDayTime() == "September 1, 7:30PM" );
+
+//I used this to test the Orchestra pricing. Orchestra should double the price.
+
+
+
+    t = b.buyRoyceHallStaffTicket( "Balcony Row J", 120, "An Evening With David Sedaris", Ticket::KIND::OTHER, "October 1, 7:30PM" );
+    assert( std::to_string( t.getPrice() ) == "35.000000" );
+    assert( t.getKind() == Ticket::KIND::OTHER );
+    assert( t.getRow() == "Balcony Row J" );
+    assert( t.getSeat() == 120 );
+    assert( t.getVenue() ==  "Royce Hall" );
+    assert( t.getEvent() == "An Evening With David Sedaris" );
+    assert( t.getDayTime() == "October 1, 7:30PM" );
+
+ //I used this to test the late PM showing. PM should increase the price.
+
+
+    
+    t = b.buyRoyceHallTicket( "Orchestra Row A", 12, "Barry Manilow Live In Concert", Ticket::KIND::CONCERT, "November 1, 7:30PM" );
+    assert( std::to_string( t.getPrice() ) == "130.000000" );
+    assert( t.getKind() == Ticket::KIND::CONCERT );
+    assert( t.getRow() == "Orchestra Row A" );
+    assert( t.getSeat() == 12 );
+    assert( t.getVenue() ==  "Royce Hall" );
+    assert( t.getEvent() == "Barry Manilow Live In Concert" );
+    assert( t.getDayTime() == "November 1, 7:30PM" );
+
+//I used this to test the late PM showing as well as the Orchestra pricing. Orchestra should double the price and PM should increase the price
+
+
+
+     t = b.buyRoyceHallTicket( "Balcony Row A", 12, "Barry Manilow Live In Concert", Ticket::KIND::CONCERT, "November 1, 7:30" );
+    assert( std::to_string( t.getPrice() ) == "50.000000" );
+    assert( t.getKind() == Ticket::KIND::CONCERT );
+    assert( t.getRow() == "Balcony Row A" );
+    assert( t.getSeat() == 12 );
+    assert( t.getVenue() ==  "Royce Hall" );
+    assert( t.getEvent() == "Barry Manilow Live In Concert" );
+    assert( t.getDayTime() == "November 1, 7:30" );
+
+// I used this to test non PM shows and non Orchestra seats
+
+
+
+    t = b.buyRoyceHallTicket( "Orchestra Row A", 12, "Barry Manilow Live In Concert", Ticket::KIND::OTHER, "November 1, 7:30" );
+    assert( std::to_string( t.getPrice() ) == "80.000000" );
+    assert( t.getKind() == Ticket::KIND::OTHER );
+    assert( t.getRow() == "Orchestra Row A" );
+    assert( t.getSeat() == 12 );
+    assert( t.getVenue() ==  "Royce Hall" );
+    assert( t.getEvent() == "Barry Manilow Live In Concert" );
+    assert( t.getDayTime() == "November 1, 7:30" );
+
+// I used this to test OTHER kind at a day time showing

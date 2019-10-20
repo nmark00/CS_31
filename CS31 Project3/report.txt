@@ -1,0 +1,54 @@
+Nicholas Mark
+305101337
+
+A. A big obstacle was getting started on checking whether or not the time was valid. I did not know the best way to verify the seconds and minutes. Once I figured out that I needed to pick a unique char like ':' and base the validity of the string based off of this character, the other fuctions fell into place.
+I was in a bit of a time crunch since I did not start the project until the day before it was due.
+
+B. I created 4 additional boolean functions to test the validity of the string, one for each corresponding part: isTimeValid, isStrokesRateValid, isDistanceValid, and isHeartrateValid.
+Each function had a for loop that picked out some char that I would use to base the rest of the string off of. For instance, isTimeValid I chose the ':' since it only occurs once in the string.
+for (int i=0; i< rowerString.length(); i++) {
+        
+        // must locate ':'
+        if (rowerString[i]== ':' ) {
+            x=i;
+        }
+    }
+Then I used if statements to test the surrounding char and make sure they were proper. I did this with many isdigit(rowerString[x+1]) or something to that effect. I created many conditions to capture the validity of the rowerString.
+To test the range of numbers, such as the number of seconds, I added each digit of the heartrate number, and used if statement to ensure that it was in the appropriate string
+if (isdigit(rowerString[x+1]) && isdigit(rowerString[x+2]) && isspace(rowerString[x+3])) {
+        seconds = 10* (rowerString[x+1]- '0');
+        seconds += rowerString[x+2] - '0';
+    }
+Similar code was used for the other int functions.
+Then to ensure that the numbers fell into the specified range, for time it is between 0-59 and for the others it is 1-999, I used an if statement comparison.
+if (seconds<60 && minutes<60) {
+        time=true;
+    }
+
+If all four boolean functions are true, then I set isValidRowerString() to true. 
+Once isValidRowerString is true, the other five int functions run their code. Otherwise, while isRowerString is false, they just return -1. The int functions' code is very similar to one another. used very similar code as the 4 additional functions, since I already had to calculate time, distance, heartrate, and strokes rate to ensure they were in range. I reused code from the boolean functions into the int functions.
+
+C. Valid rowerString tests:
+
+ :14    28 s/m     42 m    110		(used to test no minute)
+    :14 28 s/m 42 m  110   (extra spaces at the start and between fields are allowed)
+ 1:14    28 s/m   42 m  110   (when present, the minute field must be 1 or greater)
+  59:14     28 s/m     42 m    110         (the largest valid minute value is 59)
+  59:59    28 s/m     42 m    110           (the largest valid second value is 59)
+  59:59    999 s/m     42 m    110       (the largest valid stroke rate is 999 s/m)
+  59:59    999 s/m     42 m    999      (the largest valid heart rate is 999 b/m)
+
+Invalid rowerString tests:
+
+asdf:14    28 s/m     42 m    110   (the first character must be either : or a digit)
+:14    28 s/m     42 m    110 asdf           (no extra ending characters allowed)
+:14     28       s/m    42 m    110            (extra spaces after 28 not allowed)
+0:14    28 s/m     42 m    110         (the smallest legal minute valid is 1, not 0)
+00:14    00028 s/m     0042 m   000110 (leading extra zeros not allowed in any field)
+:-14    -28 s/m     -42 m   -110          (negative values not allowed in any field)
+555:14    28 s/m    42 m   110              (the largest legal minute value is 59)
+:555      28 s/m      42 m  110             (the largest legal second value is 59)
+:14    99123 s/m    42 m   110      (the largest legal stroke rate is 999)
+:14    0 s/m            42 m   110	(the smallest legal stroke rate 1, not 0)
+:14    28 s/m         42 m   99123	    (the largest legal heart rate is 999)
+:14    28 s/m         42 m   0            (smallest legal heart rate is 1)

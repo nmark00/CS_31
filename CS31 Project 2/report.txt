@@ -1,0 +1,32 @@
+Nicholas Mark
+305101337
+
+a.
+I had to overcome logging onto the seasnet servers. I forgot my username so I had to go to the Help Desk to recover that. Then I had trouble copying my program onto the server, but reread the CCLE documents and got it.
+
+b.
+I first tested:
+	Ticket
+	Lunch
+I did this to make sure the program would quit after entering “Lunch”, and would not prompt anymore questions
+
+Then I tested:
+	BruinCard
+	Breakfast
+	Staff
+This was also to make sure the program would not ask any more questions. 
+
+Then I tested:
+	BruinCard
+	Breakfast
+	Student
+	Yes
+This was to make sure the program could reach the end without any mistakes. 
+
+Then I tested:
+	Bruincard
+
+This broke the program as expected, since I did not enter “BruinCard” correctly.
+I went on to make sure the other questions would fail if I did not spell the words correctly. For instance, I spelled “Breakfast” without capitalizing the “B”.
+
+If the input is not exactly as spelled in the prompted question, or if an extra space or word is included, the program will not run correctly.

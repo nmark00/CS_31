@@ -1,0 +1,110 @@
+1.
+foo++ and (*ptr)++
+so G
+
+2.
+index is 7
+int *p= array+index
+
+//  	 0. 1. 2. 3.  4.  5. 6. 7.  8.  9. 
+array = {4, 6, 2, 3, -1, -3, 2, 2, -7, -7}
+1.-7
+2.2
+3.-1
+4.3
+5.-3
+*p = -3
+
+3.
+delete(p1,p2,p3,p4);
+
+4.
+should be count, not *count
+should be *str1 and *str2
+should be count, not *count
+
+5.
+Goldfish::Goldfish(int capacity)
+{
+	if(capcity<0)
+		m_memory= new char[3];
+	else
+		m_memory= new char[capacity];
+	for(int i=0; i<capcity; i++)
+	{
+		*(m_memory + 1)= '.';
+	}
+	m_amount=0;
+	m_capcity=capcity;
+}
+
+void Goldfish::remember(char c)
+{
+	if(m_memory== m_memory[capcity])
+	{
+		for(int i=0; i<capcity-1; i++)
+		{
+			*m_memory[i]=*m_memory[i+1];
+		}
+	}
+	*m_memory=c;
+	if(m_memory<m_memory[capcity])
+		m_memory++;
+}
+
+void Goldfish::forget()
+{
+	for(int i=0; i<capcity; i++)
+		{
+			*m_memory[i]='.';
+		}
+}
+
+Goldfish::~Goldfish()
+{
+	delete(m_memory);
+}
+
+6.
+Aquarium::Aquarium()
+{
+	m_nFish=0;
+	m_fish[MAX_FISH]= new Goldfish;
+}
+
+bool Aquarium::addFish(int capacity)
+{
+	if(m_nFish<MAX_FISH)
+	{
+		m_fish= new Goldfish(capacity)
+		m_nFish++;
+		m_fish++;
+		return true;
+	}
+	else
+		return false;
+}
+
+Aquarium::getFish(int n)
+{
+	if(m_nFish<n)
+		return null;
+	else
+		return m_fish[n];
+}
+
+Aquarium::~Aquarium()
+{
+	delete(m_fish)
+}
+
+void Aquarium::oracle()
+{
+	for(int i=0; i<m_nFish; i++)
+	{
+		*(m_fish+i).printMemory();
+		*(m_fish+i).forget();
+	}
+}
+
+7.

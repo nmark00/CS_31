@@ -1,0 +1,60 @@
+Nicholas Mark
+305101337
+
+A. I had to overcome the errors with shiftRight function. It did not always shift right, and I realized that it was because the size I entered was not sufficiently large, so the loop did not reach the end of the array. I also worked a lot on the test cases.
+
+B.
+
+    string a[8] = {"samwell", "jon", "margaery", "daenerys", "tyrion", "sansa", "howard123", "jon4"};
+    string b[8] = { "perpetual", "hole", "preset", "persuade", "morning", "goat", "desire", "print"};
+    string c[10] = { "squeeze", "sanctify", "murky", "immolate", "santify", "subtract", "subtract", "measly" };
+    string d[10] = { "smother12", "befell", "153", "willing", "willing", "substantial4", "decorate2", "successful"};
+    string e[10] = { "limping", "answer34", "12345678", "rake", "pencil", "same", "tooth", "kite", "kite", "frame"};
+    string f[8] = { "disillusioned", "gracefully", "splendid", "leftist", "supers", "12345", "skip", "lux"};
+    string g[8] = { "1234567890", "123456789", "12345678", "1234567", "1234567", "123456", "123456", "123"};
+    string h[5] = { "veryLongWord", "long word", "medium", "short", "word"};
+    string i[0] = {};
+    
+    
+    assert(!hasDuplicates(a, 8));  //should fail
+    assert(!hasDuplicates(b, 8));  //should fail
+    assert(hasDuplicates(c, 10));
+    assert(hasDuplicates(d, 8));
+    assert(!hasDuplicates(e, 8));  //should fail
+    assert(hasDuplicates(e, 10));
+    assert(!hasDuplicates(f, 8));  //should fail
+    assert(hasDuplicates(g, 8));
+    assert(!hasDuplicates(h, 5));  //should fail
+    assert(!hasDuplicates(h, -2));  //should fail
+    assert(!hasDuplicates(i, 0));  //should fail
+    
+    assert(countAllDigits(a, 8) == 4);
+    assert(countAllDigits(b, 8) == 0);
+    assert(countAllDigits(e, 8) == 10);
+    assert(countAllDigits(f, 8) == 5);
+    assert(countAllDigits(g, 8) == 56);
+    
+    assert(!isInDecreasingOrder(a, 8));  //should fail
+    assert(!isInDecreasingOrder(g, 8));  //should fail
+    assert(isInDecreasingOrder(f, 8));
+    
+    cout<< "shiftRight Tests: \n";
+    assert(shiftRight(a, 3, 3, "foo") == 3); cerr<< endl;
+    assert(shiftRight(b, 7, 3, "foo") == 3); cerr<< endl;
+    assert(shiftRight(c, 3, 7, "foo") == 3); cerr<< endl;
+    assert(shiftRight(d, -4, 22, "foo") == -1); cerr<< endl;   //should fail
+    assert(shiftRight(e, 8, -5, "foo")== -1); cerr<< endl;
+    
+    assert(find(f, 8, "skip") == 6);
+    assert(find(f, 8, "disillusioned") == 0);
+    assert(find(g, 8, "skip") == -1);   //should fail
+    assert(find(g, 8, "123456") == 5);
+    assert(find(h, 8, "long word") == 1);
+    assert(find(h, 8, "skip") == -1);  //should fail
+    assert(find(i, 8, "skip") == -1);  //should fail
+    
+    assert(replaceAllCharacters(a, 8, 'a', '_')); cerr<< endl;
+    assert(replaceAllCharacters(b, 8, 'e', '_')); cerr<< endl;
+    assert(replaceAllCharacters(c, 8, 'u', '_')); cerr<< endl;
+    assert(replaceAllCharacters(d, 8, 'l', '_')); cerr<< endl;
+    assert(replaceAllCharacters(e, 8, '3', '_')); cerr<< endl;
